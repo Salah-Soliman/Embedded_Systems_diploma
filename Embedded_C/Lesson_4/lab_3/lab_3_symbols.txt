@@ -1,0 +1,25 @@
+//Learn_in_depth
+//Salah Soliman
+
+//lab_3_symbols
+
+1-main.o :-
+
+00000000 T main
+
+2-startup.o :-
+
+         U _E_bss
+         U _E_DATA
+         U _E_text
+         U _S_bss
+         U _S_DATA
+00000000 T Default_Handler
+00000000 R g_p_fn_vectore
+00000000 W H_fault_Handler
+         U main
+00000000 W NMI_Handler
+0000000c T Reset_Handler
+00000000 b Stack_top
+
+ 
