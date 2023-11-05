@@ -1,0 +1,58 @@
+//Learn_in_depth
+//Salah Soliman
+
+//Lessoon_3_lab_2_symbols
+
+1-main.o :-
+
+00000003 C bss_var
+00000000 R const_variables
+00000004 D g_variable
+00000000 T main
+00000000 D R_ODR
+
+2-startup.o :-
+
+         U _E_bss
+         U _E_DATA
+         U _E_text
+         U _S_bss
+         U _S_DATA
+         U _stack_top
+00000000 W Bus_Fault
+00000000 T Default_Handler
+00000000 W H_fault_Handler
+         U main
+00000000 W MM_Fault_Handler
+00000000 W NMI_Handler
+0000000c T Reset_Handler
+00000000 W Usage_Fault_Handler
+00000000 D vectors
+
+3-learn_in_depth_cortex_m3.elf
+
+20000008 B _E_bss
+20000008 D _E_DATA
+08000184 T _E_text
+20000008 B _S_bss
+20000000 D _S_DATA
+20001008 B _stack_top
+20001008 B bss_var
+080000c4 W Bus_Fault
+08000180 T const_variables
+080000c4 T Default_Handler
+20000004 D g_variable
+080000c4 W H_fault_Handler
+0800001c T main
+080000c4 W MM_Fault_Handler
+080000c4 W NMI_Handler
+20000000 D R_ODR
+080000d0 T Reset_Handler
+080000c4 W Usage_Fault_Handler
+08000000 T vectors
+
+
+
+
+
+ 
