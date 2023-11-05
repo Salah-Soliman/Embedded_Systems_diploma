@@ -1,0 +1,39 @@
+//Learn_in_depth
+//Salah Soliman
+
+//Lessoon_3_lab_2_symbols
+
+1-main.o :-
+
+00000003 C bss_var
+00000000 R const_variables
+00000004 D g_variable
+00000000 T main
+00000000 D R_ODR
+
+2-startup.o :-
+
+00000000 t _reset
+         U main
+00000006 t Vector_handler
+
+3-learn_in_depth_cortex_m3.elf
+20000008 B _E_bss
+20000008 D _E_DATA
+08000104 T _E_text
+080000f8 t _reset
+20000008 B _S_bss
+20000000 D _S_DATA
+20001008 B _stack_top
+20001008 B bss_var
+08000100 T const_variables
+20000004 D g_variable
+08000050 T main
+20000000 D R_ODR
+080000fe t Vector_handler
+
+
+
+
+
+ 
