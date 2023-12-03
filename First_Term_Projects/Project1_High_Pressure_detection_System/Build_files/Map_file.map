@@ -1,0 +1,244 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+AA_state            0x4               ../C_files/AlarmActuator.o
+AM_state_id         0x1               ../C_files/AlarmMonitor.o
+HPD_state_id        0x1               ../C_files/HPDetection.o
+AM_state            0x4               ../C_files/AlarmMonitor.o
+AA_state_id         0x1               ../C_files/AlarmActuator.o
+PressureVal         0x4               ../C_files/HPDetection.o
+PS_state            0x4               ../C_files/main.o
+PS_state_id         0x1               ../C_files/main.o
+HPD_state           0x4               ../C_files/HPDetection.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00020000         xr
+sram             0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x08000000      0x424
+ *(.vectors*)
+ .vectors       0x08000000       0x1c ../Build_files/startup.o
+                0x08000000                vectors
+ *(.text*)
+ .text          0x0800001c       0x64 ../C_files/AlarmActuator.o
+                0x0800001c                AA_init
+                0x0800002c                Get_alarm_state
+                0x0800005c                ST_Setting_Alarm_State
+ .text          0x08000080       0xa8 ../C_files/AlarmMonitor.o
+                0x08000080                High_pressure_detected
+                0x0800009c                ST_Alarm_Start
+                0x080000cc                ST_waiting
+                0x080000f4                ST_Alarm_Stop
+                0x08000110                Pulling_intervals
+ .text          0x08000128       0x6c ../C_files/HPDetection.o
+                0x08000128                Get_sensor_val
+                0x08000158                ST_checking
+ .text          0x08000194       0x80 ../C_files/main.o
+                0x08000194                setup
+                0x080001b4                main
+ .text          0x08000214       0x48 ../C_files/PressureSensor.o
+                0x08000214                ST_PS_Reading
+ .text          0x0800025c      0x10c ../C_files/driver/driver.o
+                0x0800025c                Delay
+                0x08000280                getPressureVal
+                0x08000298                Set_Alarm_actuator
+                0x080002e8                GPIO_INITIALIZATION
+ .text          0x08000368       0xbc ../Build_files/startup.o
+                0x08000368                MM_Fault_Handler
+                0x08000368                Usage_Fault_Handler
+                0x08000368                Bus_Fault
+                0x08000368                Default_Handler
+                0x08000368                H_fault_Handler
+                0x08000368                NMI_Handler
+                0x08000374                Reset_Handler
+ *(.rodata)
+                0x08000424                _E_text = .
+
+.glue_7         0x08000424        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x08000424        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x08000424        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x08000424        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x08000424        0x0
+ .iplt          0x00000000        0x0 ../C_files/AlarmActuator.o
+
+.rel.dyn        0x08000424        0x0
+ .rel.iplt      0x00000000        0x0 ../C_files/AlarmActuator.o
+
+.data           0x20000000        0x8 load address 0x08000424
+                0x20000000                _S_DATA = .
+ *(.data)
+ .data          0x20000000        0x0 ../C_files/AlarmActuator.o
+ .data          0x20000000        0x4 ../C_files/AlarmMonitor.o
+                0x20000000                AlarmPeriod
+ .data          0x20000004        0x4 ../C_files/HPDetection.o
+                0x20000004                Threshold
+ .data          0x20000008        0x0 ../C_files/main.o
+ .data          0x20000008        0x0 ../C_files/PressureSensor.o
+ .data          0x20000008        0x0 ../C_files/driver/driver.o
+ .data          0x20000008        0x0 ../Build_files/startup.o
+                0x20000008                . = ALIGN (0x4)
+                0x20000008                _E_DATA = .
+
+.igot.plt       0x20000008        0x0 load address 0x0800042c
+ .igot.plt      0x00000000        0x0 ../C_files/AlarmActuator.o
+
+.bss            0x20000008     0x1025 load address 0x0800042c
+                0x20000008                _S_bss = .
+ *(.bss*)
+ .bss           0x20000008        0x4 ../C_files/AlarmActuator.o
+                0x20000008                Alarm_state
+ .bss           0x2000000c        0x0 ../C_files/AlarmMonitor.o
+ .bss           0x2000000c        0x0 ../C_files/HPDetection.o
+ .bss           0x2000000c        0x0 ../C_files/main.o
+ .bss           0x2000000c        0x0 ../C_files/PressureSensor.o
+ .bss           0x2000000c        0x0 ../C_files/driver/driver.o
+ .bss           0x2000000c        0x0 ../Build_files/startup.o
+                0x2000000c                _E_bss = .
+                0x2000000c                . = ALIGN (0x4)
+                0x2000100c                . = (. + 0x1000)
+ *fill*         0x2000000c     0x1000 
+                0x2000100c                _stack_top = .
+ COMMON         0x2000100c        0x5 ../C_files/AlarmActuator.o
+                0x2000100c                AA_state
+                0x20001010                AA_state_id
+ *fill*         0x20001011        0x3 
+ COMMON         0x20001014        0x8 ../C_files/AlarmMonitor.o
+                0x20001014                AM_state_id
+                0x20001018                AM_state
+ COMMON         0x2000101c        0xc ../C_files/HPDetection.o
+                0x2000101c                HPD_state_id
+                0x20001020                PressureVal
+                0x20001024                HPD_state
+ COMMON         0x20001028        0x5 ../C_files/main.o
+                0x20001028                PS_state
+                0x2000102c                PS_state_id
+LOAD ../C_files/AlarmActuator.o
+LOAD ../C_files/AlarmMonitor.o
+LOAD ../C_files/HPDetection.o
+LOAD ../C_files/main.o
+LOAD ../C_files/PressureSensor.o
+LOAD ../C_files/driver/driver.o
+LOAD ../Build_files/startup.o
+OUTPUT(HPD_system_Cortex_M3.elf elf32-littlearm)
+
+.debug_info     0x00000000      0x879
+ .debug_info    0x00000000      0x11f ../C_files/AlarmActuator.o
+ .debug_info    0x0000011f      0x141 ../C_files/AlarmMonitor.o
+ .debug_info    0x00000260      0x124 ../C_files/HPDetection.o
+ .debug_info    0x00000384      0x1b7 ../C_files/main.o
+ .debug_info    0x0000053b       0xe1 ../C_files/PressureSensor.o
+ .debug_info    0x0000061c       0xf5 ../C_files/driver/driver.o
+ .debug_info    0x00000711      0x168 ../Build_files/startup.o
+
+.debug_abbrev   0x00000000      0x470
+ .debug_abbrev  0x00000000       0xa5 ../C_files/AlarmActuator.o
+ .debug_abbrev  0x000000a5       0x92 ../C_files/AlarmMonitor.o
+ .debug_abbrev  0x00000137       0xa9 ../C_files/HPDetection.o
+ .debug_abbrev  0x000001e0       0xb5 ../C_files/main.o
+ .debug_abbrev  0x00000295       0x7c ../C_files/PressureSensor.o
+ .debug_abbrev  0x00000311       0x9d ../C_files/driver/driver.o
+ .debug_abbrev  0x000003ae       0xc2 ../Build_files/startup.o
+
+.debug_loc      0x00000000      0x38c
+ .debug_loc     0x00000000       0x90 ../C_files/AlarmActuator.o
+ .debug_loc     0x00000090       0xdc ../C_files/AlarmMonitor.o
+ .debug_loc     0x0000016c       0x64 ../C_files/HPDetection.o
+ .debug_loc     0x000001d0       0x64 ../C_files/main.o
+ .debug_loc     0x00000234       0x2c ../C_files/PressureSensor.o
+ .debug_loc     0x00000260       0xc8 ../C_files/driver/driver.o
+ .debug_loc     0x00000328       0x64 ../Build_files/startup.o
+
+.debug_aranges  0x00000000       0xe0
+ .debug_aranges
+                0x00000000       0x20 ../C_files/AlarmActuator.o
+ .debug_aranges
+                0x00000020       0x20 ../C_files/AlarmMonitor.o
+ .debug_aranges
+                0x00000040       0x20 ../C_files/HPDetection.o
+ .debug_aranges
+                0x00000060       0x20 ../C_files/main.o
+ .debug_aranges
+                0x00000080       0x20 ../C_files/PressureSensor.o
+ .debug_aranges
+                0x000000a0       0x20 ../C_files/driver/driver.o
+ .debug_aranges
+                0x000000c0       0x20 ../Build_files/startup.o
+
+.debug_line     0x00000000      0x3a5
+ .debug_line    0x00000000       0x6b ../C_files/AlarmActuator.o
+ .debug_line    0x0000006b       0x6e ../C_files/AlarmMonitor.o
+ .debug_line    0x000000d9       0x63 ../C_files/HPDetection.o
+ .debug_line    0x0000013c       0x9d ../C_files/main.o
+ .debug_line    0x000001d9       0x64 ../C_files/PressureSensor.o
+ .debug_line    0x0000023d       0xab ../C_files/driver/driver.o
+ .debug_line    0x000002e8       0xbd ../Build_files/startup.o
+
+.debug_str      0x00000000      0x398
+ .debug_str     0x00000000      0x160 ../C_files/AlarmActuator.o
+                                0x1b3 (size before relaxing)
+ .debug_str     0x00000160       0x8c ../C_files/AlarmMonitor.o
+                                0x1d9 (size before relaxing)
+ .debug_str     0x000001ec       0x5a ../C_files/HPDetection.o
+                                0x19d (size before relaxing)
+ .debug_str     0x00000246       0x32 ../C_files/main.o
+                                0x1ee (size before relaxing)
+ .debug_str     0x00000278       0x2a ../C_files/PressureSensor.o
+                                0x184 (size before relaxing)
+ .debug_str     0x000002a2       0x67 ../C_files/driver/driver.o
+                                0x187 (size before relaxing)
+ .debug_str     0x00000309       0x8f ../Build_files/startup.o
+                                0x1c1 (size before relaxing)
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 ../C_files/AlarmActuator.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000000       0x12 ../C_files/AlarmMonitor.o
+ .comment       0x00000000       0x12 ../C_files/HPDetection.o
+ .comment       0x00000000       0x12 ../C_files/main.o
+ .comment       0x00000000       0x12 ../C_files/PressureSensor.o
+ .comment       0x00000000       0x12 ../C_files/driver/driver.o
+ .comment       0x00000000       0x12 ../Build_files/startup.o
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x33 ../C_files/AlarmActuator.o
+ .ARM.attributes
+                0x00000033       0x33 ../C_files/AlarmMonitor.o
+ .ARM.attributes
+                0x00000066       0x33 ../C_files/HPDetection.o
+ .ARM.attributes
+                0x00000099       0x33 ../C_files/main.o
+ .ARM.attributes
+                0x000000cc       0x33 ../C_files/PressureSensor.o
+ .ARM.attributes
+                0x000000ff       0x33 ../C_files/driver/driver.o
+ .ARM.attributes
+                0x00000132       0x33 ../Build_files/startup.o
+
+.debug_frame    0x00000000      0x280
+ .debug_frame   0x00000000       0x64 ../C_files/AlarmActuator.o
+ .debug_frame   0x00000064       0x98 ../C_files/AlarmMonitor.o
+ .debug_frame   0x000000fc       0x48 ../C_files/HPDetection.o
+ .debug_frame   0x00000144       0x4c ../C_files/main.o
+ .debug_frame   0x00000190       0x2c ../C_files/PressureSensor.o
+ .debug_frame   0x000001bc       0x78 ../C_files/driver/driver.o
+ .debug_frame   0x00000234       0x4c ../Build_files/startup.o
+
+.debug_ranges   0x00000000       0x18
+ .debug_ranges  0x00000000       0x18 ../C_files/main.o
