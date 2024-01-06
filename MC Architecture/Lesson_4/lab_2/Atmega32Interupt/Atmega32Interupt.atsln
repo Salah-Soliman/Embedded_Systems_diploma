@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Atmega32Interupt", "Atmega32Interupt\Atmega32Interupt.cproj", "{4B2B3901-5475-4958-A713-5A198EC19085}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B2B3901-5475-4958-A713-5A198EC19085}.Debug|AVR.ActiveCfg = Debug|AVR
+		{4B2B3901-5475-4958-A713-5A198EC19085}.Debug|AVR.Build.0 = Debug|AVR
+		{4B2B3901-5475-4958-A713-5A198EC19085}.Release|AVR.ActiveCfg = Release|AVR
+		{4B2B3901-5475-4958-A713-5A198EC19085}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
