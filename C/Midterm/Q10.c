@@ -1,6 +1,6 @@
 /*
  * EX1.c
- * Created on: Sep 28, 2022
+ * Created on: Sep 13, 2022
  * Author: salah soliman
  */
 #include "stdio.h"
